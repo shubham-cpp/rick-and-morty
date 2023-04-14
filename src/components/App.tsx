@@ -14,6 +14,7 @@ function App() {
             </div>
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
               Welcome!
+              <i className="fa-solid fa-magnifying-glass"></i>
             </h1>
             <p className="mt-4 text-xl text-gray-500">
               This is a boilerplate build with Vite, React 18, TypeScript,
