@@ -43,8 +43,10 @@ const Favorites: FunctionComponent = () => {
     return <span>Error while fetching your favorite characters</span>
   }
   return (
-    <div>
-      <h1>Favorites: </h1>
+    <div className="text-white w-full">
+      <h1 className="text-center font-bold font-serif ">
+        Favorites Characters
+      </h1>
 
       <div className="flex gap-4 flex-wrap my-4">
         {data?.length > 0 ? (

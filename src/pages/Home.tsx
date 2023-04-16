@@ -63,10 +63,13 @@ export const Home: FunctionComponent = () => {
 
   return (
     <>
-      <form onSubmit={e => e.preventDefault()} className="flex gap-x-4">
+      <form
+        onSubmit={e => e.preventDefault()}
+        className="flex gap-x-4 items-center justify-center"
+      >
         <select
           aria-label="Select Status of Character. Should be one of 'Alive', 'Dead', 'Unknown'"
-          className="block border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500"
+          className="block border border-blue-200 text-white bg-light rounded-md shadow-sm focus:outline-none focus:ring-light focus:border-light p-1"
           value={status}
           onChange={e => setStatus(e.currentTarget.value as Status)}
         >
@@ -77,7 +80,7 @@ export const Home: FunctionComponent = () => {
         </select>
         <select
           aria-label="Select Gender of Character. Should be one of 'Male', 'Female', 'Genderless', 'Unknown'"
-          className="block border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500"
+          className="block border border-blue-200 text-white bg-light rounded-md shadow-sm focus:outline-none focus:ring-light focus:border-light p-1"
           value={gender}
           onChange={e => setGender(e.currentTarget.value as Gender)}
         >
@@ -94,12 +97,12 @@ export const Home: FunctionComponent = () => {
           return <Card character={character} key={character.id} />
         })}
       </div>
-      <footer className="flex items-center gap-x-4">
+      <footer className="flex items-center gap-x-4 w-full justify-center mb-4">
         <button
           type="button"
           aria-label="Previous Page"
           title="Previous Page"
-          className={`flex items-center font-bold bg-purple-500 px-2 py-1 rounded-md text-white 
+          className={`flex items-center font-bold bg-light px-2 py-1 rounded-md text-white 
             ${isPrevDisabled ? 'opacity-50 cursor-not-allowed' : ''}`}
           onClick={previousPage}
           disabled={isPrevDisabled}
@@ -124,7 +127,7 @@ export const Home: FunctionComponent = () => {
           type="button"
           aria-label="Next Page"
           title="Next Page"
-          className={`flex items-center font-bold bg-purple-500 px-2 py-1 rounded-md text-white 
+          className={`flex items-center font-bold bg-light px-2 py-1 rounded-md text-white 
             ${isNextDisabled ? 'opacity-50 cursor-not-allowed' : ''}`}
           disabled={isNextDisabled}
           onClick={nextPage}

@@ -37,7 +37,7 @@ const Card: FunctionComponent<Props> = props => {
 
   return (
     <>
-      <article className="grid grid-cols-3 gap-2 px-1 py-1 rounded-md bg-slate-50 shadow-slate-200 shadow-md max-w-sm">
+      <article className="grid grid-cols-3 gap-2 px-1 py-1 rounded-md bg-third text-white border-2 border-light shadow-light shadow-md max-w-sm">
         <img
           src={props.character.image}
           alt={props.character.name}
@@ -46,7 +46,7 @@ const Card: FunctionComponent<Props> = props => {
         <aside className="col-span-2">
           <div className="flex justify-between">
             <h4 className="flex gap-x-2">
-              <span className="text-gray-600">Name</span>
+              <span className="text-white opacity-60">Name</span>
               <span>{props.character.name}</span>
             </h4>
             <button
@@ -61,7 +61,7 @@ const Card: FunctionComponent<Props> = props => {
             </button>
           </div>
           <p>
-            <span className="text-gray-600">Status </span>
+            <span className="text-white opacity-60">Status </span>
             <span
               className={
                 isAlive
@@ -73,21 +73,23 @@ const Card: FunctionComponent<Props> = props => {
             </span>
           </p>
           <p>
-            <span className="text-gray-600">Featured in </span>
+            <span className="text-white opacity-60">Featured in </span>
             <span>
               {featuredIn} {featuredIn !== 1 ? 'eps' : 'ep'}{' '}
             </span>
           </p>
           <p>
-            <span className="text-gray-600">Gender </span>
+            <span className="text-white opacity-60">Gender </span>
             <span>{props.character.gender}</span>
           </p>
           <p className="flex items-center">
-            <span className="text-gray-600 material-icons">location_on </span>
+            <span className="text-white opacity-60 material-icons">
+              location_on{' '}
+            </span>
             <span>{props.character?.location?.name}</span>
           </p>
           <button
-            className="text-purple-700 w-full text-right underline underline-offset-4"
+            className="text-blue-100 w-full text-right underline underline-offset-4"
             aria-label={`Open dialog modal with more info about ${props.character.name}`}
             onClick={() => setOpen(true)}
           >
@@ -101,10 +103,10 @@ const Card: FunctionComponent<Props> = props => {
         <div className="fixed inset-0 overflow-y-auto">
           <div className="flex min-h-full items-center justify-center p-4">
             <Dialog.Panel
-              className="mx-auto min-w-[320px] max-w-lg rounded bg-white"
+              className="mx-auto min-w-[320px] max-w-lg rounded bg-primary text-white"
               style={{ minWidth: 'min(calc(100% - 2rem),35rem)' }}
             >
-              <Dialog.Title className="flex justify-between items-center bg-slate-100 py-2 mb-2">
+              <Dialog.Title className="flex justify-between items-center bg-secondary text-white py-2 mb-2">
                 <span className="font-bold font-serif text-center flex-grow">
                   {props.character.name}
                 </span>
@@ -122,7 +124,7 @@ const Card: FunctionComponent<Props> = props => {
                 className="w-full text-right px-2 py-1 group"
                 onClick={closeOpen}
               >
-                <span className="bg-slate-700 p-1 text-white rounded-md group-hover:opacity-50 group-hover:font-semibold">
+                <span className="bg-blue-700 p-1 mx-2 my-2 text-white rounded-md group-hover:opacity-50 group-hover:font-semibold">
                   Close
                 </span>
               </button>

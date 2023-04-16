@@ -36,9 +36,22 @@ const LocationInfo: FunctionComponent<Location & { title: string }> = props => {
   return (
     <section>
       <h3>{title}</h3>
-      <p>Name: {location.name}</p>
-      <p>Type: {location.type}</p>
-      <p>Dimension: {location.dimension}</p>
+      <table className="border-collapse">
+        <tbody>
+          <tr>
+            <td>Name</td>
+            <td>{location.name}</td>
+          </tr>
+          <tr>
+            <td>Type</td>
+            <td>{location.type}</td>
+          </tr>
+          <tr>
+            <td>Dimension</td>
+            <td>{location.dimension.replace('Dimension', '')}</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
   )
 }
@@ -61,15 +74,28 @@ const MoreInfo: FunctionComponent<Props> = props => {
           alt={character.name}
           className="aspect-square w-1/2"
         />
-        <aside>
-          <p>Gender: {character.gender}</p>
-          <p>Status: {character.status} </p>
-          <p>Species: {character.species}</p>
-          <p>
-            Type:{' '}
-            {character.type.trim().length > 0 ? character.type : 'Unknown'}
-          </p>
-        </aside>
+        <table>
+          <tbody>
+            <tr>
+              <td>Gender</td>
+              <td>{character.gender}</td>
+            </tr>
+            <tr>
+              <td>Status</td>
+              <td>{character.status}</td>
+            </tr>
+            <tr>
+              <td>Species</td>
+              <td>{character.species}</td>
+            </tr>
+            <tr>
+              <td>Type</td>
+              <td>
+                {character.type.trim().length > 0 ? character.type : 'Unknown'}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       {/* url={character.location.url} name={character.location.name}  */}
       <LocationInfo {...character.origin} title="Origin Information" />

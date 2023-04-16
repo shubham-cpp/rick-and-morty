@@ -10,7 +10,14 @@ module.exports = {
       serif: ['Merriweather', ...defaultTheme.fontFamily.serif],
       mono: ['Fira Mono', ...defaultTheme.fontFamily.mono]
     },
-    extend: {}
+    extend: {
+      colors: {
+        primary: '#002137',
+        secondary: '#002e4e',
+        third: '#003a61',
+        light: '#00406c'
+      }
+    }
   },
   plugins: []
 }
