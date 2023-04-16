@@ -16,23 +16,19 @@ interface Props {
 
 const Card: FunctionComponent<Props> = props => {
   const buttonTitle = 'Add to Favorites'
-  const [added, setAdded] = useState(false)
   const [open, setOpen] = useState(false)
+  const [added, setAdded] = useState(false)
   const addToFavorites = () => {
-    // TODO: Resolve bug:
-    // We need to click the button twice to add the character to favorites
     let favs: number[] = []
-    setAdded(prev => {
-      const list = localStorage.getItem(GLOBALS.FAVORITE_CHARACTERS)
-      if (list) {
-        favs = JSON.parse(list) as number[]
-        favs.push(props.character.id)
-        // Remove character from favorites if we've already added
-        if (!prev) favs = favs.filter(fav => fav !== props.character.id)
-        localStorage.setItem(GLOBALS.FAVORITE_CHARACTERS, JSON.stringify(favs))
-      }
-      return !prev
-    })
+    setAdded(!added)
+    const list = localStorage.getItem(GLOBALS.FAVORITE_CHARACTERS)
+    if (list) {
+      favs = JSON.parse(list) as number[]
+      favs.push(props.character.id)
+      // Remove character from favorites if we've already added
+      if (added) favs = favs.filter(fav => fav !== props.character.id)
+      localStorage.setItem(GLOBALS.FAVORITE_CHARACTERS, JSON.stringify(favs))
+    }
   }
   const favoriteCharacters = () => {
     const favs = localStorage.getItem(GLOBALS.FAVORITE_CHARACTERS)
@@ -43,18 +39,8 @@ const Card: FunctionComponent<Props> = props => {
 
   const isFavorite = favoriteCharacters().includes(props.character.id)
   const featuredIn = props.character.episode.length
-
-  const statusIcon = useMemo(() => {
-    switch (props.character.status) {
-      case 'Alive':
-        return 'recommend'
-      case 'Dead':
-        return 'heart_broken'
-      default:
-        return 'help_outline'
-    }
-  }, [])
   const isAlive = props.character.status === 'Alive'
+
   return (
     <>
       <article className="grid grid-cols-3 gap-2 px-1 py-1 rounded-md bg-slate-50 shadow-slate-200 shadow-md max-w-sm">

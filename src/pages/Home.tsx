@@ -6,20 +6,47 @@ import { FunctionComponent, useEffect, useState } from 'react'
 import { GLOBALS } from 'utils'
 import { CharacterResponse } from 'utils/types'
 
-const fetchCharacters = async (page: number) => {
-  const res = await fetch(`${GLOBALS.BASE_URL}/character?page=${page}`)
+const fetchCharacters = async (
+  page: number,
+  status: string | null,
+  gender: string | null
+) => {
+  const fetchUrl = new window.URL(`${GLOBALS.BASE_URL}/character/`)
+  fetchUrl.searchParams.append('page', `${page}`)
+  if (status) {
+    fetchUrl.searchParams.append('status', `${status}`)
+  }
+  if (gender) {
+    fetchUrl.searchParams.append('gender', `${gender}`)
+  }
+  const res = await fetch(fetchUrl.toString())
   if (!res.ok || res.status < 200 || res.status > 210) {
     throw new Error('Something went wrong')
   }
   return res.json() as Promise<CharacterResponse>
 }
 
+type Gender = 'male' | 'female' | 'genderless' | 'unknow' | ''
+type Status = 'alive' | 'dead' | 'unknown' | ''
+
 export const Home: FunctionComponent = () => {
   const [page, setPage] = useState(1)
-  const query = useQuery(['characters', page], () => fetchCharacters(page))
+  const [gender, setGender] = useState<Gender>('')
+  const [status, setStatus] = useState<Status>('')
+  const query = useQuery(
+    ['characters', page, status, gender],
+    () => fetchCharacters(page, status, gender),
+    {
+      keepPreviousData: true,
+      refetchOnWindowFocus: false
+    }
+  )
 
   useEffect(() => {
-    localStorage.setItem(GLOBALS.FAVORITE_CHARACTERS, JSON.stringify([]))
+    const list = localStorage.getItem(GLOBALS.FAVORITE_CHARACTERS)
+    if (!list) {
+      localStorage.setItem(GLOBALS.FAVORITE_CHARACTERS, JSON.stringify([]))
+    }
   }, [])
 
   const nextPage = () => setPage(prev => prev + 1)
@@ -36,6 +63,31 @@ export const Home: FunctionComponent = () => {
 
   return (
     <>
+      <form onSubmit={e => e.preventDefault()} className="flex gap-x-4">
+        <select
+          aria-label="Select Status of Character. Should be one of 'Alive', 'Dead', 'Unknown'"
+          className="block border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500"
+          value={status}
+          onChange={e => setStatus(e.currentTarget.value as Status)}
+        >
+          <option value=""> Select Status</option>
+          <option value="alive">Alive</option>
+          <option value="dead">Dead</option>
+          <option value="unknown">Unknown</option>
+        </select>
+        <select
+          aria-label="Select Gender of Character. Should be one of 'Male', 'Female', 'Genderless', 'Unknown'"
+          className="block border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500"
+          value={gender}
+          onChange={e => setGender(e.currentTarget.value as Gender)}
+        >
+          <option value=""> Select Gender</option>
+          <option value="alive">Alive</option>
+          <option value="dead">Dead</option>
+          <option value="unknown">Unknown</option>
+        </select>
+      </form>
+
       <div className="flex gap-4 flex-wrap my-4">
         {query.data.results.map(character => {
           return <Card character={character} key={character.id} />
