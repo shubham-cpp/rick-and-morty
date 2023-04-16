@@ -47,9 +47,13 @@ const Favorites: FunctionComponent = () => {
       <h1>Favorites: </h1>
 
       <div className="flex gap-4 flex-wrap my-4">
-        {data.map(character => {
-          return <Card character={character} key={character.id} />
-        })}
+        {data?.length > 0 ? (
+          data?.map(character => {
+            return <Card character={character} key={character.id} />
+          })
+        ) : (
+          <span>No favorites yet</span>
+        )}
       </div>
     </div>
   )
