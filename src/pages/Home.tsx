@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
-import { Card } from 'components'
+import { Card } from '@/components'
 import { FunctionComponent, useEffect, useState } from 'react'
 
 // import CharacterData from '../public/data.json'
-import { GLOBALS } from 'utils'
-import { CharacterResponse } from 'utils/types'
+import { GLOBALS } from '@/utils'
+import { CharacterResponse } from '@/utils/types'
 
 const fetchCharacters = async (
   page: number,
@@ -82,8 +82,9 @@ export const Home: FunctionComponent = () => {
           onChange={e => setGender(e.currentTarget.value as Gender)}
         >
           <option value=""> Select Gender</option>
-          <option value="alive">Alive</option>
-          <option value="dead">Dead</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="genderless">Genderless</option>
           <option value="unknown">Unknown</option>
         </select>
       </form>

@@ -1,13 +1,7 @@
-import { Dialog, Transition } from '@headlessui/react'
-import {
-  Fragment,
-  FunctionComponent,
-  useEffect,
-  useMemo,
-  useState
-} from 'react'
-import { GLOBALS } from 'utils'
-import { Character } from 'utils/types'
+import { GLOBALS } from '@/utils'
+import { Character } from '@/utils/types'
+import { Dialog } from '@headlessui/react'
+import { FunctionComponent, useState } from 'react'
 import MoreInfo from './MoreInfo'
 
 interface Props {

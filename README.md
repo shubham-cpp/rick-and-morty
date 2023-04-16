@@ -2,6 +2,10 @@
 
 A demo website using react, TypeScript, tailwindcss
 
+## Visit
+
+[Live Demo](https://rick-and-morty-ten-mu.vercel.app/)
+
 ## What is inside?
 
 This project uses many tools like:
@@ -14,3 +18,4 @@ This project uses many tools like:
 - [Tailwindcss](https://tailwindcss.com)
 - [Eslint](https://eslint.org)
 - [Prettier](https://prettier.io)
+- [React-Query](https://tanstack.com/query/v4/docs/react/quick-start)

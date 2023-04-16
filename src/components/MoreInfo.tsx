@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { FunctionComponent } from 'react'
-import { GLOBALS } from 'utils'
-import { Character, Location, LocationResponse } from 'utils/types'
+import { GLOBALS } from '@/utils'
+import { Character, Location, LocationResponse } from '@/utils/types'
 
 interface Props {
   id: number

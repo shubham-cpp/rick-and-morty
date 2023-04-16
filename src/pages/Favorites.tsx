@@ -1,7 +1,7 @@
-import { Card } from 'components'
+import { Card } from '@/components'
 import { FunctionComponent, useEffect, useState } from 'react'
-import { GLOBALS } from 'utils'
-import { Character } from 'utils/types'
+import { GLOBALS } from '@/utils'
+import { Character } from '@/utils/types'
 
 const Favorites: FunctionComponent = () => {
   const [, setFavList] = useState<number[]>([])
