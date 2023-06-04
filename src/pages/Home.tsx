@@ -92,7 +92,7 @@ export const Home: FunctionComponent = () => {
         </select>
       </form>
 
-      <div className="flex gap-4 flex-wrap my-4">
+      <div className="flex gap-4 flex-wrap my-4 justify-center">
         {query.data.results.map(character => {
           return <Card character={character} key={character.id} />
         })}
@@ -102,7 +102,7 @@ export const Home: FunctionComponent = () => {
           type="button"
           aria-label="Previous Page"
           title="Previous Page"
-          className={`flex items-center font-bold bg-light px-2 py-1 rounded-md text-white 
+          className={`flex items-center font-bold bg-light px-2 py-1 rounded-md text-white
             ${isPrevDisabled ? 'opacity-50 cursor-not-allowed' : ''}`}
           onClick={previousPage}
           disabled={isPrevDisabled}
@@ -127,7 +127,7 @@ export const Home: FunctionComponent = () => {
           type="button"
           aria-label="Next Page"
           title="Next Page"
-          className={`flex items-center font-bold bg-light px-2 py-1 rounded-md text-white 
+          className={`flex items-center font-bold bg-light px-2 py-1 rounded-md text-white
             ${isNextDisabled ? 'opacity-50 cursor-not-allowed' : ''}`}
           disabled={isNextDisabled}
           onClick={nextPage}

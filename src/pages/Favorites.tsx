@@ -19,7 +19,7 @@ const Favorites: FunctionComponent = () => {
           throw new Error('Something went wrong')
         }
         const jsonData: Character[] = await res.json()
-        setData(jsonData)
+        setData(Array.isArray(jsonData) ? jsonData : [jsonData])
         setLoading(false)
       } catch (err) {
         setError(true)
